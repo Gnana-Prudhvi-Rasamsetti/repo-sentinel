@@ -1,11 +1,7 @@
 {
-  "schema_version": 1,
-  "title": "Repo Sentinel — Repository Security & Quality Agent",
-  "track": "AI triage",
-  "description": "Architecture-agnostic repository scanner that reports common security risks and unfinished-code signals with file-level evidence and remediation suggestions.",
-  "repository_url": "https://github.com/Gnana-Prudhvi-Rasamsetti/repo-sentinel",
-  "demo_video_url": null,
-  "live_demo_url": null,
-  "runtime_ai": false,
-  "runtime_ai_notes": "Repo Sentinel uses deterministic static-analysis rules and heuristics. It does not call an LLM or send source code to an AI service."
+  "language": "python",
+  "install": "python -m pip install .",
+  "test": "python -m unittest discover -s tests -v",
+  "start": "sentinel fixtures/sample-app",
+  "port": 0
 }
