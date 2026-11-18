@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repo-sentinel"
+version = "0.1.0"
+description = "Architecture-agnostic security and code-quality review agent for source repositories"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Mycrobo Aspirant" }]
+
+[project.scripts]
+sentinel = "sentinel.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

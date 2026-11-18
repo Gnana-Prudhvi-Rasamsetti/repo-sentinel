@@ -1,0 +1,30 @@
+name: Missed finding
+description: Report a security or code-quality issue Repo Sentinel did not find
+title: "[Missed finding]: "
+labels: ["scanner-feedback"]
+body:
+  - type: input
+    id: category
+    attributes:
+      label: Security or quality category
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Language and relevant framework
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Sanitized code example
+      description: Use a minimal snippet without real credentials or private information.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected finding and why it matters
+    validations:
+      required: true

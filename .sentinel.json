@@ -1,0 +1,11 @@
+{
+  "exclude": [
+    "**/generated/**",
+    "**/*_vendor/**",
+    "src/sentinel/rules.py",
+    "tests/**",
+    "fixtures/sample-app/**",
+    "fixtures/real-repos/**"
+  ],
+  "disable_rules": []
+}
