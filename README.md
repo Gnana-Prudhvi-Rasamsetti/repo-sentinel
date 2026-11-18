@@ -18,6 +18,8 @@ $env:PYTHONPATH = "src"
 python -m sentinel.cli .
 ```
 
+For a guided presentation using the intentionally vulnerable sample project, see [DEMO.md](DEMO.md).
+
 ## Use in automation
 
 ```powershell
@@ -108,7 +110,23 @@ The suite checks the planted findings in `fixtures/sample-app` and verifies that
 
 ## Design
 
-The scanner separates repository walking, rule definitions, language-aware checks, and report formatting. Most checks are language-neutral heuristics; Python files also receive AST checks for dynamic execution, swallowed bare exceptions, unused imports, and YAML loader safety. SQL checks in JavaScript/TypeScript and Java track simple request-derived variables within one file. This keeps the runner independent of application architecture while allowing language-specific analysis. It skips common generated/dependency directories and files larger than 1 MB. Current fixture coverage includes Python, JavaScript, Go, and Java.
+Repo Sentinel is architecture agnostic: point it at a source repository and it scans files directly. It does not need the target application's framework, build system, database, or runtime. The scanner separates repository walking, rule definitions, language-aware checks, and report formatting. Most checks are language-neutral heuristics; Python files also receive AST checks for dynamic execution, swallowed bare exceptions, unused imports, and YAML loader safety. SQL checks in JavaScript/TypeScript and Java track simple request-derived variables within one file. It skips common generated/dependency directories and files larger than 1 MB. Current fixture coverage includes Python, JavaScript, Go, and Java.
+
+The run follows this path:
+
+```text
+Repository path
+      ↓
+File walker and exclusions
+      ↓
+Security and code-quality rules
+      ↓
+Findings with evidence and remediation
+      ↓
+Text, JSON, or SARIF report
+      ↓
+Optional baseline and CI severity gate
+```
 
 ## Limits
 
