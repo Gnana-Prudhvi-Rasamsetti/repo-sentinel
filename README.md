@@ -37,6 +37,29 @@ sentinel . --dependencies --format json --fail-on-dependency
 
 This queries the [OSV public API](https://google.github.io/osv.dev/api/) for exact versions found in npm `package-lock.json`, pinned `requirements*.txt`, and Go `go.mod` files. It does not resolve version ranges or inspect transitive dependencies unless they are present in a supported lockfile.
 
+## HTTP API
+
+Repo Sentinel also provides a small standard-library HTTP wrapper for hosted graders and integrations. Install the package, then start the service:
+
+```powershell
+python -m pip install .
+python -m sentinel.server
+```
+
+The service listens on port `8000` by default. Set `HOST` or `PORT` to override the bind address or port. `GET /health` returns a health check, `POST /classify` rule-triages a finding description, and `POST /scan` scans a relative directory under `SENTINEL_SCAN_ROOT` (the current directory by default).
+
+Example requests:
+
+```json
+{"text":"Hardcoded API key found in source"}
+```
+
+```json
+{"path":"fixtures/sample-app"}
+```
+
+`/classify` returns a category, urgency, and confidence using transparent keyword rules. `/scan` returns the scanner's normal finding details. No LLM is used, and source code is not sent to an AI service.
+
 ## Configuration
 
 An optional `.sentinel.json` in the scan root supports glob patterns and rule IDs:
